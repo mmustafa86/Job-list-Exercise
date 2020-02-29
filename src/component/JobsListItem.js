@@ -3,12 +3,12 @@ import './JobsListItem.css'
 import { withRouter } from 'react-router-dom'
 
 class JobsListItem extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//     };
-//   }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 clickHandler(){
+    console.log(this.props.history)
    this.props.history.push('/jobs/'+this.props.id)
 }
   render() {
@@ -26,6 +26,6 @@ clickHandler(){
     );
   }
 }
-export default withRouter(JobsListItem);
+export default withRouter( JobsListItem);
 
 

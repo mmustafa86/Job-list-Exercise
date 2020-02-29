@@ -8,10 +8,15 @@ class job extends Component {
   }
   componentDidMount() {
     let  jobId=this.props.match.params.id
-    axios.get( "/api/jobs/" + jobId )
-    .then(({ data })=> this.setState(data))
+    console.log(jobId)
+    axios.get( "/api/jobs/"+jobId)
+    .then(({ data })=> {
+      console.log(data)
+      this.setState(data)})
 
   }
+
+ 
   render() {
     console.log(this.state.title) 
     return (
