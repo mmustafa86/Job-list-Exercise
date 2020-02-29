@@ -4,7 +4,7 @@ import JobsListItem from './JobsListItem'
 import job from './job'
 import '../component/Jobs.css'
 import axios from "axios"
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route ,BrowserRouter} from 'react-router-dom'
 export default class jobs extends Component {
   constructor(props) {
     super(props);
@@ -13,22 +13,22 @@ export default class jobs extends Component {
     };
 
   }
- 
+
   componentDidMount() {
     console.log('Did component mount ?');
     axios.get('/api/jobs')
-      .then(({data}) => {
+      .then(({ data }) => {
         // console.log(data)
-        this.setState({jobs: data})
+        this.setState({ jobs: data })
       })
-     
+
   }
 
   render() {
     console.log(this.state.jobs)
-    const  jobsJSX = this.state.jobs.map((job,index)=>{
+    const jobsJSX = this.state.jobs.map((job, index) => {
 
-      return  <JobsListItem key={index} {...job}/>
+      return <JobsListItem key={index} {...job} />
     })
 
     return (
@@ -39,7 +39,12 @@ export default class jobs extends Component {
             <p className="App-subtitle">Click to explore  jobs</p>
           </header>
           <div className="Jobs">
-        {jobsJSX}
+       
+          <Switch>
+          <Route exact  path="/jobs"  render={ () => jobsJSX }/>
+          <Route path="/jobs/:id" component={job}/>
+
+          </Switch>
           </div>
         </div>
       </div>
